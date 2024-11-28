@@ -35,10 +35,10 @@ A Visual Studio Code extension to generate Angular components in a specified fol
 
 ## Release Notes
 
-### 0.0.1
+### 0.0.2
 
-- Initial release of Angular Component Generator.
-- Supports right-click context menu for generating Angular components.
+- version 2 of Angular Component Generator.
+- Supports enter folder path for generating Angular components.
 
 ## Contributing
 

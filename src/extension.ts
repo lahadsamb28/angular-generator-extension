@@ -13,10 +13,9 @@ export function activate(context: vscode.ExtensionContext) {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
 		const angularJsonPath = path.join(workspaceFolder || '', 'angular.json');
 		if(fs.existsSync(angularJsonPath)){
-			// const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file'});
+			const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file'});
 			const componentName = await vscode.window.showInputBox({ prompt: 'Enter the component name'});
 			if(componentName) {
-				const folderPath = uri.fsPath;
 				const command = `ng generate component ${componentName} --path=${folderPath}`;
 	
 				exec(command, {cwd: workspaceFolder}, (err, stdout, stderr) => {
