@@ -6,6 +6,10 @@ import * as fs from 'fs';
 import { stderr, stdout } from 'process';
 import * as vscode from 'vscode';
 
+
+//*********************TODO: bug fixed */
+
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -13,10 +17,11 @@ export function activate(context: vscode.ExtensionContext) {
 		const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
 		const angularJsonPath = path.join(workspaceFolder || '', 'angular.json');
 		if(fs.existsSync(angularJsonPath)){
-			const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file'});
+			// const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file'});
 			const componentName = await vscode.window.showInputBox({ prompt: 'Enter the component name'});
-			if(folderPath && componentName) {
-				const command = `ng generate component ${componentName} --path=${folderPath}`;
+			if(componentName) {
+				const folderPath = uri.fsPath;
+				const command = `ng generate component ${folderPath}/${componentName}`;
 	
 				exec(command, {cwd: workspaceFolder}, (err, stdout, stderr) => {
 					if(err) {

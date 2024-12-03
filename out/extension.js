@@ -44,6 +44,7 @@ const child_process_1 = require("child_process");
 const path_1 = __importDefault(require("path"));
 const fs = __importStar(require("fs"));
 const vscode = __importStar(require("vscode"));
+//*********************TODO: bug fixed */
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 function activate(context) {
@@ -51,10 +52,11 @@ function activate(context) {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath;
         const angularJsonPath = path_1.default.join(workspaceFolder || '', 'angular.json');
         if (fs.existsSync(angularJsonPath)) {
-            const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file' });
+            // const folderPath = await vscode.window.showInputBox({ prompt: 'Enter the path file'});
             const componentName = await vscode.window.showInputBox({ prompt: 'Enter the component name' });
-            if (folderPath && componentName) {
-                const command = `ng generate component ${componentName} --path=${folderPath}`;
+            if (componentName) {
+                const folderPath = uri.fsPath;
+                const command = `ng generate component ${folderPath}/${componentName}`;
                 (0, child_process_1.exec)(command, { cwd: workspaceFolder }, (err, stdout, stderr) => {
                     if (err) {
                         vscode.window.showErrorMessage(`Error: ${stderr}`);
