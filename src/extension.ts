@@ -21,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const componentName = await vscode.window.showInputBox({ prompt: 'Enter the component name'});
 			if(componentName) {
 				const folderPath = uri.fsPath;
-				const command = `ng generate component ${folderPath}/${componentName}`;
+				const command = `ng generate component ${componentName} --path=${folderPath}`;
 	
 				exec(command, {cwd: workspaceFolder}, (err, stdout, stderr) => {
 					if(err) {

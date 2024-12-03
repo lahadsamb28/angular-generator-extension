@@ -56,7 +56,7 @@ function activate(context) {
             const componentName = await vscode.window.showInputBox({ prompt: 'Enter the component name' });
             if (componentName) {
                 const folderPath = uri.fsPath;
-                const command = `ng generate component ${folderPath}/${componentName}`;
+                const command = `ng generate component ${componentName} --path=${folderPath}`;
                 (0, child_process_1.exec)(command, { cwd: workspaceFolder }, (err, stdout, stderr) => {
                     if (err) {
                         vscode.window.showErrorMessage(`Error: ${stderr}`);
